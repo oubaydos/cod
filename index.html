@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Distribution d'eau en France</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
+
+    <!--    <link rel="stylesheet" href="./style.css">-->
+    <link rel="stylesheet" href="./style.min.css">
+    <link rel="stylesheet" media="print" href="./print.css">
+    <!--    <link rel="stylesheet" href="./colors.css">-->
+    <link rel="stylesheet" href="./colors.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="./d3.v7.min.js" defer></script>
+    <!-- <script src="./utils.js" defer></script> -->
+    <script src="./utils.min.js" defer></script>
+    <!-- <script src="./mapper.js" defer></script> -->
+    <script src="./mapper.min.js" defer></script>
+    <!-- <script src="./data-loader.js" defer></script> -->
+    <script src="./data-loader.min.js" defer></script>
+    <!-- <script src="./script.js" defer></script> -->
+    <script src="./script.min.js" defer></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-secondary w-100">
+        <div class="container">
+            <a class="navbar-brand text-white fs-3" href="#"><b>Challenge Open Data</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Visualisation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="about.html">Rapport</a>
+                    </li>
+                </ul>
+                <span class="navbar-text text-white">
+                    Qualité de l'eau en France par département
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6 ">
+                <div class=" d-flex flex-column">
+                    <div id="timeline"></div>
+                    <svg></svg>
+                </div>
+            </div>
+            <div class="col-6 bg-light d-flex flex-column gap-3">
+                <div id="main_chart">
+                    <canvas id="main_chart_canvas"></canvas>
+                </div>
+                <div class="desc my-4">
+                    <table class="table">
+                        <thead class="table-secondary">
+                            <tr>
+                                <th scope="col">Indicateur</th>
+                                <th scope="col">Définition</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="col">Achat des pesticides</td>
+                                <td scope="col">Les achats réalisés par kg auprès de distributeurs établis en France ou
+                                    des
+                                    achats effectués auprès de distributeurs établis à l'étranger et non redevables.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Conformité chimique</td>
+                                <td scope="col">Indicateur de la conformité des paramètres chimiques aux limites de
+                                    qualité en
+                                    vigueur au moment du prélèvement
+                                    pour le type d'eau considéré (et en prenant en compte les dérogations éventuelles en
+                                    cours
+                                    pour l'installation
+                                    concernée).
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Conformité bactériologique</td>
+                                <td scope="col">Indicateur de la conformité des paramètres microbiologiques aux limites
+                                    de
+                                    qualité en vigueur au moment du
+                                    prélèvement pour le type d'eau considéré.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Conformité chimique de référence</td>
+                                <td scope="col">Indicateur de la conformité des paramètres chimiques aux références de
+                                    qualité
+                                    en vigueur au moment du prélèvement
+                                    pour le type d’eau considéré.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Conformité bactériologique de référence</td>
+                                <td scope="col">Indicateur de la conformité des paramètres microbiologiques aux
+                                    références de
+                                    qualité en vigueur au moment du
+                                    prélèvement pour le type d’eau considéré.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Limites de qualité</td>
+                                <td scope="col">Témoins de la présence/absence des risques immédiats ou à plus ou
+                                    moins long terme pour la santé de la population.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Références de qualité</td>
+                                <td scope="col">Témoins du fonctionnement des
+                                    installations de production et de distribution de l'eau.
+                                </td>
+                            </tr>
+                            <tr>
+                        <tfoot class="small link-secondary">
+                            <tr>
+                                <td>Source</td>
+                                <td>ces définitions sont extraites à partir de <a href="
+https://www.data.gouv.fr/fr/datasets/r/36afc708-42dc-4a89-b039-7fde6bcc83d8">cette documentation</a></td>
+                            </tr>
+                        </tfoot>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-white bg-secondary text-md-start w-100">
+        <div class="container p-3">
+            <div class="row justify-content-between">
+                <div class="col-6 m-2 ">
+                    <h5>Notre projet</h5>
+
+                    <p>
+                        Ce projet a été réalisé dans le cadre du challenge Open Data de l'ENSIMAG. Il a pour but de
+                        visualiser la qualité de l'eau en France par département.
+                        en rapport avec l'achat des pesticides.
+                    </p>
+                </div>
+                <div class="col-3 m-2">
+                    <h5>Notre équipe</h5>
+                    <p>ASLOUNE Salaheddine, 3A ISI</p>
+                    <p>BORDELLIER Baptiste, 3A ISI</p>
+                    <p>BOUIFADENE Obaydah, 3A ISI</p>
+                    <p>DAHMAN Iliass, 3A ISI</p>
+                    <p>PATILLON Esteban, 3A ISI</p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- <script src="./chart.js"></script> -->
+    <script src="chart.min.js"></script>
+
+</body>
+
+</html>

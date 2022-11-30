@@ -1,0 +1,39 @@
+body{
+  font-family: cursive;
+  margin : 20px ;
+}
+h1{
+  text-align: center;
+  font-size: 2em;
+}
+header{
+  border : 2px solid black  ;
+  text-align: center;
+  font-size: 1.5em;
+  color :white;
+  background-color: rgba(0, 0, 0, 0.452);
+  padding-top : 5px;
+  padding-bottom : 10px;
+}
+.authors{
+  background-color:rgb(201, 199, 199,0.05);
+  font-size: 1.2em;
+  margin-right: 70%;
+  margin-top: 50px;
+  padding :20px 30px;
+  margin-bottom: 15px;
+  border-left: 2px solid black;
+}
+.section{
+  font-size: 1.2em;
+  font-weight: bolder;
+  margin-left: 20px;
+  margin-top : 20px;
+}
+p{
+  font-size: 1.1em;
+  font-weight: lighter;
+  padding-left: 20px;
+  margin-top : 20px;
+  border-left: 1px solid rgb(133, 127, 127);
+}

@@ -1,0 +1,16 @@
+#main{
+    width:60% !important;
+    margin-left: 18%;
+    margin-top: 10%;
+}
+#return-button{
+    display: block;
+    margin: 25px auto 0 auto;
+    height:50px;
+    width:150px;
+
+}
+#helper{
+    font-size: 5px;
+    position: absolute;
+}
