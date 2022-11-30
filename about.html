@@ -5,10 +5,30 @@
     <title>Challenge Open Data</title>
 <!--    <link rel="stylesheet" href="./about-style.css">-->
     <link rel="stylesheet" href="./about-style.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   </head>
   <body>
-    <header> Challenge Open Data </header>
-    <h1>Visualisation de statistiques sur l’accès à l’eau dans le monde et de qualité en France</h1>
+    <nav class="navbar navbar-expand-lg bg-secondary w-100">
+      <div class="container">
+          <a class="navbar-brand text-white fs-3" href="#"><b>Challenge Open Data</b></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+              aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                      <a class="nav-link text-white" href="index.html">Visualisation</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="about.html">Rapport</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+    </nav>
+    <h1>Visualisation de statistiques sur la qualité de l’eau et sur l'achat de pesticides en France, par département</h1>
     <div class="authors"> 
       <span > Réalisé par : </span>
       <ul>
@@ -22,26 +42,89 @@
     <div>
       <span class="section"> > Description du projet :</span>
       <p> 
-          Ce projet est pour le but de traiter le sujet de l’état sanitaire de l’eau, nous allons nous baser sur les résultats des
-          contrôles sanitaires de l’eau dans la France, et par la suite nous présenterons des visualisations dans une application
-          web.
+        Ce projet est pour le but de traiter le sujet de l’état sanitaire de l’eau en France, nous nous baser sur
+        les résultats des contrôles sanitaires de l’eau en France, ainsi que sur les achats de pesticides. Nous représentons les 
+        différentes informations pour chasue département.
       </p>
     </div>
 
     <div>
       <span class="section"> > Jeux de données :</span>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda dolorum ullam nisi temporibus illum ratione nesciunt atque ex vel repellendus non iste doloremque tempore, sit deleniti! Necessitatibus eum quaerat autem?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit laboriosam maiores debitis pariatur dicta! Deserunt aliquam odit hic amet culpa? Ducimus, explicabo! Earum dolorum recusandae nostrum laboriosam possimus, impedit pariatur.
+        Nous avons utilisé trois jeux de données pour notre projet :
+        <ul>
+          <li>
+            <p>
+            <a href="https://www.data.gouv.fr/fr/datasets/resultats-du-controle-sanitaire-de-leau-distribuee-commune-par-commune/"> La qualité de l’eau par commune </a>
+             : Dans ce jeu de données nous présentons l’état sanitaire de l’eau commune par
+          commune dans la France, en se basant sur les résultats des analyses réalisées dans le cadre du contrôle sanitaire.
+          Les champs qui retiendront particulièrement notre attention seront le nom de la commune et la conformité des
+          différents prélèvements, bactériologiques et chimiques. Nous nous intéresserons à l’évolution de ces résultats
+          sur les 7 dernières années.*
+            </p>
+          </li>
+
+          <li> 
+            <p>
+            <a href="https://www.data.gouv.fr/fr/datasets/achats-de-pesticides-par-code-postal/">Achat de pesticides</a>
+             : Dans ce jeu de données, nous récupérons les commandes de pesticides par département et pour chaque année.
+            </p>
+          </li>
+
+          <li> 
+            <p>
+            <a href="https://www.data.gouv.fr/fr/datasets/departements-de-france/">Départements de France</a>
+             : Ce jeu de données nous permet d'associer le nom du département avec son code.
+            </p>
+          </li>
+        </ul>
       </p>
     </div>
 
     <div>
-      <span class="section"> > Esquisse d’architecture :</span>
+      <span class="section"> > Architecture de notre application :</span>
+      <p>
+        Pour la partie visualisation, nous choisissons d’utiliser html/css et javascript avec les librairies D3.js et Chart.js, 
+        qui nous semblent adaptés pour les représentations que nous voulons faire. Nous utilisons Python pour le traitement des données.
+      </p>
+      <img src="./img/image.png" style="text-align: center;margin:auto;display:flex"/>
+      <p>
+
+        
+      </p>
     </div>
 
     <div>
-      <span class="section"> > Esquisse d’interface :</span>
+      <span class="section"> > Traitement des données :</span>
+      <p>
+        Pour le traitement des données, nous avons utilisé des scripts python afin de ne garder que les champs qui nous
+        intéressent dans les jeux de données. Les jeux de données étant des fichiers csv, nous décidons aussi de les convertir en
+        fichiers JSON, simples à utiliser. Des calculs sur les données ont aussi été effectué (moyennes, sommes...) ainsi que divers formatages, à la fois des datasets et des JSON afin de rendre les données plus accessibles.
+      </p>
+        
+    </div>
+
+    <div>
+      <span class="section"> > Représentation graphique des données :</span>
+      <p>
+        Nous avons choisi de représenter nos données sous forme d’une carte interactive. Sur cette carte il est possible
+        de passer le curseur de la souris sur un département afin d’accéder aux statistiques complètes concernant la
+        qualité de l’eau de celui-ci. En cliquant sur le département on accède à un graphique complet pour ce département, en y rajoutant les achats de pesticides.
+        Ces données seront affichées dans une nouvelle page.
+        De plus il est possible de choisir l'année pour laquelle on veut visualiser l'état de l'eau en France.
+      </p>
+    </div>
+
+    <div>
+      <span class="section"> > GreenIT Analysis</span>
+      <p>
+        Voici le résultat de l'analyse de notre page web effectuée avec le calculateur d'impact GreenIT Analysis :
+      </p>
+      <img src="./img/analyse.png" style="text-align: center;margin:auto;display:flex"/>
+      <p>
+
+        
+      </p>
     </div>
 
   </body>

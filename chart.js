@@ -83,7 +83,8 @@ class DepartmentChart {
             this.title = `Achat des pesticides et Qualité de l'eau dans le département: ${departmentInformation.departmentName}`;
         new Chart(document.getElementById(this.chartTagId), {
             type: 'line', data: {
-                labels: [2016, 2017, 2018, 2019, 2020, 2021, 2022], datasets: departmentInformation.data
+                labels: [2016, 2017, 2018, 2019, 2020, 2021, 2022],
+                datasets: departmentInformation.data,
             }, options: {
                 plugins: {
                     title: {
@@ -97,10 +98,18 @@ class DepartmentChart {
                 }, scales: {
                     y: {
                         type: 'linear', display: true, position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Conformité de l\'eau',
+                        }
                     }, y1: {
                         type: 'linear', display: true, position: 'right', grid: {
                             drawOnChartArea: true, // only want the grid lines for one axis to show up
                         },
+                        title: {
+                            display: true,
+                            text: 'Achats de pesticides en kg',
+                        }
                     }
                 }
             }
