@@ -20,8 +20,6 @@ body{
     justify-content: center;
     align-items: center;
     background-image: url("./img/watercolor-paper.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
     background-size: 100% auto;
 }
 button{
